@@ -127,7 +127,7 @@ void log_start()
         
         displacement_x += ((x_s[counter] * 0.01 * 9.8) / 2);
         displacement_y += ((y_s[counter] * 0.01 * 9.8) / 2);
-        if (displacement_x * displacement_x + displacement_y * displacement_y >= 0.25)
+        if (displacement_x * displacement_x + displacement_y * displacement_y >= 25)
         {
             tilt[counter] = 1;
         }
