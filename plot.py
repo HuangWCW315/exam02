@@ -44,7 +44,7 @@ ax[0].legend(loc='lower left', frameon=True)
 
 ax[1].stem(t, tilt) # plotting the spectrum
 ax[1].set_xlabel('Time')
-ax[1].set_ylabel('Tilt')
+ax[1].set_ylabel('Displacement')
 
 plt.show()
 s.close()

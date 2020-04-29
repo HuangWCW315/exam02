@@ -108,7 +108,9 @@ void blink()
 
 void log_start()
 {
-    float displacement = 0;
+    float displacement_x = 0;
+    float displacement_y = 0;
+    float displacement_z = 0;
     Timer timer;
     timer.start();
     Thread thread1;
@@ -122,20 +124,17 @@ void log_start()
        z_s[counter] = t[2]; 
        tilt[counter] = 0;
 
-/*        displacement += 
-        if ()
+        
+        displacement_x += ((x_s[counter] * 0.01 * 9.8) / 2);
+        displacement_y += ((y_s[counter] * 0.01 * 9.8) / 2);
+        if (displacement_x * displacement_x + displacement_y * displacement_y >= 0.25)
         {
-            id = led_blink_queue.call(&blink);
             tilt[counter] = 1;
         }
-        else
-        {
-            led = 1;
-            tilt[counter] = 0;
-        }
+
         x_p = x_s[counter];
         y_p = y_s[counter];
-        z_p = z_s[counter]; */ 
+        z_p = z_s[counter];
         led = !led;
         counter++;
         wait(0.1);
