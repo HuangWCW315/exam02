@@ -34,7 +34,6 @@ int tilt[1000];
 int counter = 0;
 
 EventQueue led_blink_queue;
-
 InterruptIn SW(SW3);
 DigitalOut led(LED_RED);
 
@@ -48,7 +47,6 @@ void FXOS8700CQ_writeRegs(uint8_t * data, int len);
 void log_start();
 
 int main() {
-
    Thread event1;
    event1.start(callback(&led_blink_queue, &EventQueue::dispatch_forever));
    SW.rise(led_blink_queue.event(log_start));
@@ -89,7 +87,7 @@ int main() {
       t[2] = ((float)acc16) / 4096.0f;
 
       
-      wait(1.0);
+      wait(0.1f);
    }
 }
 
@@ -122,7 +120,9 @@ void log_start()
        x_s[counter] = t[0];
        y_s[counter] = t[1];
        z_s[counter] = t[2]; 
-  /*      displacement += 
+       tilt[counter] = 0;
+
+/*        displacement += 
         if ()
         {
             id = led_blink_queue.call(&blink);
@@ -135,15 +135,15 @@ void log_start()
         }
         x_p = x_s[counter];
         y_p = y_s[counter];
-        z_p = z_s[counter];  */
-        blink();
+        z_p = z_s[counter]; */ 
+        led = !led;
         counter++;
         wait(0.1);
     }
     timer.stop();
     timer.reset();
     led = 1;
- /*   pc.printf("%d\r\n", counter);
+    pc.printf("%d\r\n", counter);
     for (int i = 0; i < counter; i++)
     {
         pc.printf("%1.3f\r\n", time_s[i]);
@@ -151,6 +151,6 @@ void log_start()
         pc.printf("%1.3f\r\n", y_s[i]);
         pc.printf("%1.3f\r\n", z_s[i]);
         pc.printf("%d\r\n", tilt[i]);
-    }*/
+    }
     
 }
